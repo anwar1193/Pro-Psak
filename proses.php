@@ -48,8 +48,25 @@ if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['t
         $tanggal_upload = date('Y-m-d');
         $status_generate = 'belum';
 
-        mysqli_query($koneksi, "insert into tbl_psak(no_pin, no_rek, account_sts, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, refund_npv, refund_asuransi, refund_adm, ins_receivable, by_notaris, pend_asuransi, pend_survey, pend_fidusia, pend_provisi, tanggal_upload, status_generate) 
+        // Cek Apakah Ada Data Yang Sama
+        $query_cek = "SELECT * FROM tbl_psak WHERE no_pin='$no_pin'";
+        $result_cek = mysqli_query($koneksi, $query_cek) or die('error cek');
+        $cek = mysqli_num_rows($result_cek);
+
+        if($cek > 0){ // jika ada nopin yang sudah ada sebelumnya
+            $query_batal = "DELETE FROM tbl_psak WHERE status_generate = 'belum'";
+            mysqli_query($koneksi, $query_batal);
+            
+            echo '<script>
+                alert("Terdapat Data/Nopin yang sudah ada di sistem, harap periksa kembali inputan anda");window.location="home.php";
+            </script>';
+            exit;
+        }else{
+            mysqli_query($koneksi, "insert into tbl_psak(no_pin, no_rek, account_sts, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, refund_npv, refund_asuransi, refund_adm, ins_receivable, by_notaris, pend_asuransi, pend_survey, pend_fidusia, pend_provisi, tanggal_upload, status_generate) 
             values ('$no_pin','$no_rek','$account_sts', '$kode_cabang', '$cabang', '$account_name', '$restru_date', '$booking_date', $sisa_tenor, '$tgl_jatuh_tempo', '$fincat', $refund_npv, $refund_asuransi, $refund_adm, $ins_receivable, $by_notaris, $pend_asuransi, $pend_survey, $pend_fidusia, $pend_provisi, '$tanggal_upload', '$status_generate')");
+        }
+
+        
     }
     
     echo '<script>

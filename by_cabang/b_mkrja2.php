@@ -129,21 +129,31 @@
                       WHERE fincat = 'MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun
                       GROUP BY cabang";
           $result = mysqli_query($koneksi,$query) or die ('error fungsi cabang');
-          while($row = mysqli_fetch_array($result)){
+          $cek_data = mysqli_num_rows($result);
 
         ?>
-        <tr>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_npv'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_asuransi'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_adm'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_ins_receivable'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_by_notaris'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
-        </tr>
-        <?php } ?>
+          <?php if($cek_data > 0){ //jika ada data
+            while($row = mysqli_fetch_array($result)){
+          
+          ?>
+            <tr>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_npv'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_asuransi'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_adm'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_ins_receivable'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_by_notaris'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
+            </tr>
+            <?php } ?>
+
+          <?php }else{ //jika tidak ada data ?>
+            <tr>
+              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+            </tr>
+          <?php } ?>
 
         <?php  
 
@@ -216,22 +226,31 @@
                       WHERE fincat = 'MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun
                       GROUP BY cabang";
           $result = mysqli_query($koneksi,$query) or die ('error fungsi cabang');
-          while($row = mysqli_fetch_array($result)){
+          $cek_data = mysqli_num_rows($result);
 
         ?>
-        
-        <tr>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_npv'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_asuransi'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_refund_adm'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_ins_receivable'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_by_notaris'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
-        </tr>
-        <?php } ?>
+          <?php if($cek_data > 0){ //jika ada data
+            while($row = mysqli_fetch_array($result)){
+          
+          ?>
+            <tr>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_npv'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_asuransi'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_refund_adm'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_ins_receivable'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_by_notaris'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
+              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
+            </tr>
+            <?php } ?>
+
+          <?php }else{ //jika tidak ada data ?>
+            <tr>
+              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+            </tr>
+          <?php } ?>
 
         <?php  
 

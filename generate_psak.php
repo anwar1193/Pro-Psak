@@ -33,6 +33,10 @@
                 <a class="btn btn-success btn-xs" href="generate_proses.php">
                   <i class="fa fa-refresh"></i> Generate PSAK
                 </a>
+
+                <a class="btn btn-danger btn-xs" href="generate_batal.php" onclick="return confirm('Apakah anda yakin akan membatalkan proses?')">
+                  <i class="fa fa-times"></i> Batalkan Proses
+                </a>
                 
                 <table class="table table-bordered" style="margin-top: 10px;">
                   <tr>

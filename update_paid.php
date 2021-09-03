@@ -54,13 +54,35 @@
         $row_status = mysqli_fetch_array($res_status);
         $status_baru = $row_status['account_status'];
 
-        // Update status di tbl_psak
-        $query_update = "UPDATE tbl_psak SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
-        mysqli_query($koneksi, $query_update) or die('error update');
+		// validasi jika account status blm di tarik dari dleas
+		$cek_status = mysqli_num_rows($res_status);
 
-        // Update status di tbl_psak_detail
-        $query_update_detail = "UPDATE tbl_psak_detail SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
-        mysqli_query($koneksi, $query_update_detail) or die('error update detail');
+		if($cek_status < 1){ // jika nopin tidak tersedia / belum di tarik dari dleas
+
+			echo '<script>
+				alert("Nopin/Status Tidak Tersedia, Silahkan Generate Account Status atau Hubungi Team IT");
+				window.location="home.php";
+			</script>';
+			exit;
+
+		}else{ // jika nopin ada / sudah di tarik dari dleas
+
+			// Update status di tbl_psak
+			$query_update = "UPDATE tbl_psak SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
+			mysqli_query($koneksi, $query_update) or die('error update');
+	
+			// Update status di tbl_psak_detail
+			$query_update_detail = "UPDATE tbl_psak_detail SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
+			mysqli_query($koneksi, $query_update_detail) or die('error update detail');
+
+			// Jika Status Baru nya adalah closed / bukan active, maka ubah paid_status di tbl_psak jadi Done
+			if($status_baru != 'ACTIVE'){
+				// update paid_status di tbl_psak
+				$q_update_paidSts2 = "UPDATE tbl_psak SET paid_status='Done' WHERE no_pin='$no_pin'";
+				mysqli_query($koneksi, $q_update_paidSts2);
+			}
+
+		}
 
     }
 
