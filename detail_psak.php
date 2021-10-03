@@ -53,6 +53,12 @@
                   </tr>
 
                   <tr>
+                    <th>Norek</th>
+                    <th>:</th>
+                    <td><?php echo $data['no_rek'] ?></td>
+                  </tr>
+
+                  <tr>
                     <th>Account Status</th>
                     <th>:</th>
                     <td><?php echo $data['account_sts'] ?></td>
@@ -61,7 +67,22 @@
                   <tr>
                     <th>Status Penyusutan</th>
                     <th>:</th>
-                    <td><?php echo $data['paid_status'] ?></td>
+                    <td>
+                      <?php 
+                        if($data['paid_status'] != ''){
+                          echo $data['paid_status'];
+                        }else{
+                          echo 'Amortize';
+                        }
+                        
+                      ?>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Tenor Penyusutan</th>
+                    <th>:</th>
+                    <td><?php echo $data['sisa_tenor'] ?></td>
                   </tr>
 
                   <tr>
@@ -97,7 +118,6 @@
                     <th>Pend Asuransi</th>
                     <th>Pend Survey</th>
                     <th>Pend Fidusia</th>
-                    <th>Pend Provisi</th>
                     <th>Sts Paid</th>
                   </tr>
 
@@ -137,7 +157,6 @@
                     <td style="text-align: right;"><?php echo number_format($row['pend_asuransi'],0,'.',',') ?></td>
                     <td style="text-align: right;"><?php echo number_format($row['pend_survey'],0,'.',',') ?></td>
                     <td style="text-align: right;"><?php echo number_format($row['pend_fidusia'],0,'.',',') ?></td>
-                    <td style="text-align: right;"><?php echo number_format($row['pend_provisi'],0,'.',',') ?></td>
                     <td><?php echo $row['status_paid'] ?></td>
                   </tr>
                   <?php } ?>
@@ -156,7 +175,6 @@
                     <th>Pend Asuransi</th>
                     <th>Pend Survey</th>
                     <th>Pend Fidusia</th>
-                    <th>Pend Provisi</th>
                   </tr>
 
                   <?php  
@@ -175,7 +193,6 @@
                     <td style="text-align: right;"><?php echo number_format($row_salaw['pend_asuransi'],0,'.',',') ?></td>
                     <td style="text-align: right;"><?php echo number_format($row_salaw['pend_survey'],0,'.',',') ?></td>
                     <td style="text-align: right;"><?php echo number_format($row_salaw['pend_fidusia'],0,'.',',') ?></td>
-                    <td style="text-align: right;"><?php echo number_format($row_salaw['pend_provisi'],0,'.',',') ?></td>
                   </tr>
 
 
@@ -197,7 +214,6 @@
                       <td style="text-align: right;"><?php echo number_format($row_salaw['pend_asuransi'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_salaw['pend_survey'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_salaw['pend_fidusia'],0,'.',',') ?></td>
-                      <td style="text-align: right;"><?php echo number_format($row_salaw['pend_provisi'],0,'.',',') ?></td>
                     </tr>
 
                   <?php }else{ ?>
@@ -212,7 +228,6 @@
                       <td style="text-align: right;"><?php echo number_format($row_penyusutan['pend_asuransi_p'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_penyusutan['pend_survey_p'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_penyusutan['pend_fidusia_p'],0,'.',',') ?></td>
-                      <td style="text-align: right;"><?php echo number_format($row_penyusutan['pend_provisi_p'],0,'.',',') ?></td>
                     </tr>
 
                   <?php } ?>
@@ -251,7 +266,6 @@
                       <td style="text-align: right;"><?php echo number_format($row_salakh['pend_asuransi_akh'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_salakh['pend_survey_akh'],0,'.',',') ?></td>
                       <td style="text-align: right;"><?php echo number_format($row_salakh['pend_fidusia_akh'],0,'.',',') ?></td>
-                      <td style="text-align: right;"><?php echo number_format($row_salakh['pend_provisi_akh'],0,'.',',') ?></td>
                     </tr>
                   
                   <?php } ?>

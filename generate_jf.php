@@ -13,12 +13,12 @@
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              Generate PSAK
-              <small>Generate Fidding Data PSAK</small>
+              Generate JF
+              <small>Generate Fidding Data JF</small>
             </h1>
             <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Generate PSAK</li>
+              <li class="active">Generate JF</li>
             </ol>
           </section>
 
@@ -26,7 +26,7 @@
           <section class="content">
             <div class="box box-default">
               <div class="box-header with-border">
-                <h3 class="box-title">Data Fidding PSAK</h3>
+                <h3 class="box-title">Data Fidding JF</h3>
               </div>
               <div class="box-body">
 
@@ -35,11 +35,11 @@
                   <img src="img/loading.gif" alt="" width="80px">
                 </div>
                 
-                <a class="btn btn-success btn-xs" href="generate_proses.php" id="tombol-generate-psak">
-                  <i class="fa fa-refresh"></i> Generate PSAK
+                <a class="btn btn-success btn-xs" href="generate_proses_jf.php" id="tombol-generate-psak">
+                  <i class="fa fa-refresh"></i> Generate JF
                 </a>
 
-                <a class="btn btn-danger btn-xs" href="generate_batal.php" onclick="return confirm('Apakah anda yakin akan membatalkan proses?')">
+                <a class="btn btn-danger btn-xs" href="generate_batal_jf.php" onclick="return confirm('Apakah anda yakin akan membatalkan proses?')">
                   <i class="fa fa-times"></i> Batalkan Proses
                 </a>
                 
@@ -58,7 +58,7 @@
 
                   <?php  
                     $no=0;
-                    $result = tampil_psak_gen();
+                    $result = tampil_jf_gen();
                     while($row = mysqli_fetch_array($result)){
                     $no++;
                   ?>

@@ -2,6 +2,10 @@
 include('koneksi.php');
 require 'vendor/autoload.php';
 error_reporting(0);
+
+// Hapus data nopin sebelumnya
+$query_hapus = "DELETE FROM tbl_nopin";
+mysqli_query($koneksi,$query_hapus);
  
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
@@ -26,11 +30,14 @@ if(isset($_FILES['berkas_status']['name']) && in_array($_FILES['berkas_status'][
 	for($i = 1;$i < count($sheetData);$i++)
 	{
         $no_pin = $sheetData[$i]['1'];
-        $no_rek = $sheetData[$i]['2'];
-        $account_sts = $sheetData[$i]['3'];
-        $account_name = $sheetData[$i]['4'];
+        $account_sts = $sheetData[$i]['2'];
+        $app_date = date('d/m/Y', strtotime($sheetData[$i]['3']));
 
         mysqli_query($koneksi, "UPDATE tbl_psak SET account_sts='$account_sts' WHERE no_pin=$no_pin");
+
+        // masukkan data ke tbl_nopin
+        $q_simpan = "INSERT INTO tbl_nopin(no_pin, account_status, app_date) VALUES('$no_pin', '$account_sts', '$app_date')";
+        mysqli_query($koneksi, $q_simpan) or die ((mysqli_error($koneksi)));
     }
     
     echo '<script>

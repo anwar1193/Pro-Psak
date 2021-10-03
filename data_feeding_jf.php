@@ -10,19 +10,19 @@
   if(isset($_POST['filter'])){
                         
     if($_POST['status_penyusutan'] == 'all'){
-      $result = tampil_psak();
+      $result = tampil_jf();
     }elseif($_POST['status_penyusutan'] == 'amortize'){
-      $query = "SELECT * FROM tbl_psak WHERE status_generate='generated' AND paid_status=''";
+      $query = "SELECT * FROM tbl_jf WHERE status_generate='generated' AND paid_status=''";
       $result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
     }elseif($_POST['status_penyusutan'] == 'done'){
-      $query = "SELECT * FROM tbl_psak WHERE status_generate='generated' AND paid_status='Done'";
+      $query = "SELECT * FROM tbl_jf WHERE status_generate='generated' AND paid_status='Done'";
       $result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
     }
 
     $status_penyusutan = $_POST['status_penyusutan'];
 
   }else{
-    $result = tampil_psak();
+    $result = tampil_jf();
     $status_penyusutan = 'all';
   }
 
@@ -33,12 +33,12 @@
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              Data PSAK
-              <small>Data Feeding PSAK</small>
+              Data JF
+              <small>Data Feeding JF</small>
             </h1>
             <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Generate PSAK</li>
+              <li class="active">Generate JF</li>
             </ol>
           </section>
 
@@ -46,7 +46,7 @@
           <section class="content">
             <div class="box box-default">
               <div class="box-header with-border">
-                <h3 class="box-title">Data Fidding PSAK (Generated)</h3>
+                <h3 class="box-title">Data Fidding JF (Generated)</h3>
 
                 <!-- Filter By Status Penyusutan -->
                 <form method="post" action="" style="margin-top:10px">
@@ -68,7 +68,7 @@
 
                 <!-- Tombol Export -->
                 <div class="tombol-export" style="position: absolute; top:50%; right: 2%;">
-                  <form method="post" action="excel_data_psak.php">
+                  <form method="post" action="excel_data_psak_jf.php">
                     <input type="text" name="status_penyusutan" value="<?php echo $status_penyusutan ?>" hidden>
 
                     <button class="btn btn-success btn-sm" type="submit">
@@ -132,7 +132,7 @@
                       
 
                       <td style="text-align: center">
-                        <a href="detail_psak.php?no_pin='<?php echo $row['no_pin'] ?>'" class="btn btn-warning btn-xs">
+                        <a href="detail_jf.php?no_pin='<?php echo $row['no_pin'] ?>'" class="btn btn-warning btn-xs">
                           <i class="fa fa-eye"></i> View Penyusutan
                         </a>
 

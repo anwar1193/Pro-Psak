@@ -80,24 +80,17 @@ if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['t
         $sisa_tenor = $sheetData[$i]['9'];
         $tgl_jatuh_tempo = $sheetData[$i]['10'];
         $fincat = $sheetData[$i]['11'];
-        $refund_npv = $sheetData[$i]['12'];
-        $refund_asuransi = $sheetData[$i]['13'];
-        $refund_adm = $sheetData[$i]['14'];
-        $ins_receivable = $sheetData[$i]['15'];
-        $by_notaris = $sheetData[$i]['16'];
-        $pend_asuransi = $sheetData[$i]['17'];
-        $pend_survey = $sheetData[$i]['18'];
-        $pend_fidusia = $sheetData[$i]['19'];
+        $provisi_jf = $sheetData[$i]['12'];
         $tanggal_upload = date('Y-m-d');
         $status_generate = 'belum';
 
         // Cek Apakah Ada Data Yang Sama
-        $query_cek = "SELECT * FROM tbl_psak WHERE no_pin='$no_pin'";
+        $query_cek = "SELECT * FROM tbl_jf WHERE no_pin='$no_pin'";
         $result_cek = mysqli_query($koneksi, $query_cek) or die('error cek');
         $cek = mysqli_num_rows($result_cek);
 
         if($cek > 0){ // jika ada nopin yang sudah ada sebelumnya
-            $query_batal = "DELETE FROM tbl_psak WHERE status_generate = 'belum'";
+            $query_batal = "DELETE FROM tbl_jf WHERE status_generate = 'belum'";
             mysqli_query($koneksi, $query_batal);
             
             echo '<script>
@@ -105,15 +98,15 @@ if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['t
             </script>';
             exit;
         }else{
-            mysqli_query($koneksi, "insert into tbl_psak(no_pin, no_rek, account_sts, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, refund_npv, refund_asuransi, refund_adm, ins_receivable, by_notaris, pend_asuransi, pend_survey, pend_fidusia, tanggal_upload, status_generate) 
-            values ('$no_pin','$no_rek','$account_sts', '$kode_cabang', '$cabang', '$account_name', '$restru_date', '$booking_date', $sisa_tenor, '$tgl_jatuh_tempo', '$fincat', $refund_npv, $refund_asuransi, $refund_adm, $ins_receivable, $by_notaris, $pend_asuransi, $pend_survey, $pend_fidusia, '$tanggal_upload', '$status_generate')");
+            mysqli_query($koneksi, "insert into tbl_jf(no_pin, no_rek, account_sts, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, provisi_jf, tanggal_upload, status_generate) 
+            values ('$no_pin','$no_rek','$account_sts', '$kode_cabang', '$cabang', '$account_name', '$restru_date', '$booking_date', $sisa_tenor, '$tgl_jatuh_tempo', '$fincat', $provisi_jf, '$tanggal_upload', '$status_generate')");
         }
 
         
     }
     
     echo '<script>
-        alert("Data Berhasil Diupload");window.location="generate_psak.php";
+        alert("Data Berhasil Diupload");window.location="generate_jf.php";
     </script>';
 
 }

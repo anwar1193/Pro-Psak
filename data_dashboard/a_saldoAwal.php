@@ -13,7 +13,6 @@
     <td>Pend Asuransi</td>
     <td>Pend Survei</td>
     <td>Pend Fidusia</td>
-    <td>Pend Provisi</td>
   </tr>
 
   <?php  
@@ -30,7 +29,6 @@
     <td style="text-align: right;"><?php echo number_format($data_salaw_invst['t_pend_asuransi'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_invst['t_pend_survey'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_invst['t_pend_fidusia'],0,'.',',') ?></td>
-    <td style="text-align: right;"><?php echo number_format($data_salaw_invst['t_pend_provisi'],0,'.',',') ?></td>
   </tr>
 
   <?php  
@@ -47,7 +45,6 @@
     <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna['t_pend_asuransi'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna['t_pend_survey'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna['t_pend_fidusia'],0,'.',',') ?></td>
-    <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna['t_pend_provisi'],0,'.',',') ?></td>
   </tr>
 
   <?php  
@@ -64,7 +61,6 @@
     <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja['t_pend_asuransi'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja['t_pend_survey'],0,'.',',') ?></td>
     <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja['t_pend_fidusia'],0,'.',',') ?></td>
-    <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja['t_pend_provisi'],0,'.',',') ?></td>
   </tr>
 
 </table>

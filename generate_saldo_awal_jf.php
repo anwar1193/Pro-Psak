@@ -50,44 +50,26 @@
     $tahun = date('Y');
 
     $query = "SELECT 
-                cabang,
                 fincat,
-                SUM(refund_npv) AS t_refund_npv,
-                SUM(refund_asuransi) AS t_refund_asuransi,
-                SUM(refund_adm) AS t_refund_adm,
-                SUM(ins_receivable) AS t_ins_receivable,
-                SUM(by_notaris) AS t_by_notaris,
-                SUM(pend_asuransi) AS t_pend_asuransi,
-                SUM(pend_survey) AS t_pend_survey,
-                SUM(pend_fidusia) AS t_pend_fidusia
-                FROM tbl_psak_detail GROUP BY cabang, fincat";
+                SUM(provisi_jf) AS t_provisi_jf
+                FROM tbl_jf_detail GROUP BY fincat";
     $result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
     while($row = mysqli_fetch_array($result)){
        
-        $cabang = $row['cabang'];
         $fincat = $row['fincat'];
-        $refund_npv = $row['t_refund_npv'];
-        $refund_asuransi = $row['t_refund_asuransi'];
-        $refund_adm = $row['t_refund_adm'];
-        $ins_receivable = $row['t_ins_receivable'];
-        $by_notaris = $row['t_by_notaris'];
-        $pend_asuransi = $row['t_pend_asuransi'];
-        $pend_survey = $row['t_pend_survey'];
-        $pend_fidusia = $row['t_pend_fidusia'];
+        $provisi_jf = $row['t_provisi_jf'];
         
 
-        // Simpan ke tbl_saldo_awal
-        $query_simpan = "INSERT INTO tbl_saldo_awal_cabang(cabang, fincat, bulan, tahun, refund_npv, refund_asuransi, refund_adm, ins_receivable, by_notaris, pend_asuransi, pend_survey, pend_fidusia) VALUES('$cabang', '$fincat', '$bulan', '$tahun', $refund_npv, $refund_asuransi, $refund_adm, $ins_receivable, $by_notaris, $pend_asuransi, $pend_survey, $pend_fidusia)";
+        // Simpan ke tbl_saldo_awal_jf
+        $query_simpan = "INSERT INTO tbl_saldo_awal_jf(fincat, bulan, tahun, provisi_jf) VALUES('$fincat', '$bulan', '$tahun', $provisi_jf)";
 
         mysqli_query($koneksi, $query_simpan);
     }
 
     echo '<script>
-		alert("Generate Sukses");window.location="data_feeding.php";
+		window.location="generate_saldo_awal_cabang_jf.php";
 	</script>';
 ?>
-
-
 
 </body>
 </html>

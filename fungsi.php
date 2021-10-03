@@ -6,6 +6,13 @@
 		return $result;
 	}
 
+	function tampil_jf_gen(){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_jf WHERE status_generate='belum'";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil jf gen');
+		return $result;
+	}
+
 	function tampil_psak(){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE status_generate='generated'";
@@ -13,9 +20,23 @@
 		return $result;
 	}
 
+	function tampil_jf(){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_jf WHERE status_generate='generated'";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil jf gen');
+		return $result;
+	}
+
 	function tampil_saldo_awal($no_pin){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi saldo awal');
+		return $result;
+	}
+
+	function tampil_saldo_awal_jf($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_jf WHERE no_pin=$no_pin";
 		$result = mysqli_query($koneksi, $query) or die('error fungsi saldo awal');
 		return $result;
 	}
@@ -33,6 +54,16 @@
 					SUM(pend_fidusia) AS pend_fidusia_p,
 					SUM(pend_provisi) AS pend_provisi_p
 					FROM tbl_psak_detail
+					WHERE no_pin=$no_pin AND status_paid='paid'";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
+		return $result;
+	}
+
+	function tampil_penyusutan_jf($no_pin){
+		global $koneksi;
+		$query = "SELECT
+					SUM(provisi_jf) AS provisi_jf_p
+					FROM tbl_jf_detail
 					WHERE no_pin=$no_pin AND status_paid='paid'";
 		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
 		return $result;
@@ -56,6 +87,16 @@
 		return $result;
 	}
 
+	function tampil_saldo_akhir_jf($no_pin){
+		global $koneksi;
+		$query = "SELECT
+					SUM(provisi_jf) AS provisi_jf_akh
+					FROM tbl_jf_detail
+					WHERE no_pin=$no_pin AND status_paid='belum'";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
+		return $result;
+	}
+
 	function hapus_psak($no_pin){
 		global $koneksi;
 		$query = "DELETE FROM tbl_psak WHERE no_pin = $no_pin";
@@ -73,9 +114,23 @@
 		return $result;
 	}
 
+	function tampil_jf_detail($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_jf_detail WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
 	function tampil_psak_nopin($no_pin){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_jf_nopin($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_jf WHERE no_pin=$no_pin";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
 		return $result;
 	}
@@ -97,6 +152,15 @@
 		return $result;
 	}
 
+	function tampil_salaw_invst_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					provisi_jf AS t_provisi_jf
+					FROM tbl_saldo_awal_jf WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
 	function tampil_salaw_mtgna($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -110,6 +174,15 @@
 					pend_fidusia AS t_pend_fidusia,
 					pend_provisi AS t_pend_provisi
 					FROM tbl_saldo_awal WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
+	function tampil_salaw_mtgna_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					provisi_jf AS t_provisi_jf
+					FROM tbl_saldo_awal_jf WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
 		return $result;
 	}
@@ -131,6 +204,15 @@
 		return $result;
 	}
 
+	function tampil_salaw_mkrja_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					provisi_jf AS t_provisi_jf
+					FROM tbl_saldo_awal_jf WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
 	function tampil_active_invst($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -144,6 +226,15 @@
 					pend_fidusia AS t_pend_fidusia,
 					pend_provisi AS t_pend_provisi
 					FROM tbl_penyusutan_active WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_active_invst_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					provisi_jf AS t_provisi_jf
+					FROM tbl_penyusutan_active_jf WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
 		return $result;
 	}
@@ -165,6 +256,15 @@
 		return $result;
 	}
 
+	function tampil_active_mtgna_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					provisi_jf AS t_provisi_jf
+					FROM tbl_penyusutan_active_jf WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
 	function tampil_active_mkrja($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -178,6 +278,32 @@
 					pend_fidusia AS t_pend_fidusia,
 					pend_provisi AS t_pend_provisi
 					FROM tbl_penyusutan_active WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
+	function tampil_active_mkrja_jf($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					refund_npv AS t_refund_npv
+					FROM tbl_penyusutan_active WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
+	function tampil_active_all($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					SUM(refund_npv) AS t_refund_npv,
+					SUM(refund_asuransi) AS t_refund_asuransi,
+					SUM(refund_adm) AS t_refund_adm,
+					SUM(ins_receivable) AS t_ins_receivable,
+					SUM(by_notaris) AS t_by_notaris,
+					SUM(pend_asuransi) AS t_pend_asuransi,
+					SUM(pend_survey) AS t_pend_survey,
+					SUM(pend_fidusia) AS t_pend_fidusia,
+					SUM(pend_provisi) AS t_pend_provisi
+					FROM tbl_penyusutan_active WHERE bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
 		return $result;
 	}
@@ -229,6 +355,23 @@
 					pend_fidusia AS t_pend_fidusia,
 					pend_provisi AS t_pend_provisi
 					FROM tbl_penyusutan_closed WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_closedreguler_all($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					SUM(refund_npv) AS t_refund_npv,
+					SUM(refund_asuransi) AS t_refund_asuransi,
+					SUM(refund_adm) AS t_refund_adm,
+					SUM(ins_receivable) AS t_ins_receivable,
+					SUM(by_notaris) AS t_by_notaris,
+					SUM(pend_asuransi) AS t_pend_asuransi,
+					SUM(pend_survey) AS t_pend_survey,
+					SUM(pend_fidusia) AS t_pend_fidusia,
+					SUM(pend_provisi) AS t_pend_provisi
+					FROM tbl_penyusutan_closed WHERE bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
 		return $result;
 	}

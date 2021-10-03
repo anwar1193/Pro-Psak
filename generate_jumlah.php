@@ -1,3 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .loading{
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: grid;
+        }
+
+        .loading img{
+            position: relative;
+            margin: 0 auto;
+            top: -100px;
+        }
+
+        .loading span{
+            margin-top: 100px;
+            font-size: 2.5em;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="loading">
+        <span>Sedang Di Proses..</span>
+        <img src="img/loading.gif" alt="">
+    </div>
+
+
 <?php  
 
     include 'koneksi.php';
@@ -15,7 +60,6 @@
 		$pend_asuransi = $row['pend_asuransi'];
 		$pend_survey = $row['pend_survey'];
 		$pend_fidusia = $row['pend_fidusia'];
-		$pend_provisi = $row['pend_provisi'];
 
         // Mengambil ID Awal, Akhir, dan Sebelum Akhir dari setiap account untuk parameter update
         $q_id = "SELECT MIN(id) AS id_awal,  MAX(id) AS id_akhir FROM tbl_psak_detail WHERE no_pin='$no_pin'";
@@ -34,8 +78,7 @@
             SUM(by_notaris) AS by_notaris_pre,
             SUM(pend_asuransi) AS pend_asuransi_pre,
             SUM(pend_survey) AS pend_survey_pre,
-            SUM(pend_fidusia) AS pend_fidusia_pre,
-            SUM(pend_provisi) AS pend_provisi_pre
+            SUM(pend_fidusia) AS pend_fidusia_pre
             FROM tbl_psak_detail WHERE no_pin='$no_pin' AND id BETWEEN $id_awal AND $id_sebelum_akhir";
 
         $res_pre_total = mysqli_query($koneksi, $q_pre_total) or die('error2');
@@ -50,7 +93,6 @@
         $pre_pend_asuransi = $row_pre_total['pend_asuransi_pre'];
         $pre_pend_survey = $row_pre_total['pend_survey_pre'];
         $pre_pend_fidusia = $row_pre_total['pend_fidusia_pre'];
-        $pre_pend_provisi = $row_pre_total['pend_provisi_pre'];
 
         // angsuran_terakhir
         $refund_npv_final = $refund_npv - $pre_refund_npv;
@@ -61,7 +103,6 @@
         $pend_asuransi_final = $pend_asuransi - $pre_pend_asuransi;
         $pend_survey_final = $pend_survey - $pre_pend_survey;
         $pend_fidusia_final = $pend_fidusia - $pre_pend_fidusia;
-        $pend_provisi_final = $pend_provisi - $pre_pend_provisi;
 
         // Update/Adjust angsuran terakhir
         $q_update_angsuran_terakhir = "UPDATE tbl_psak_detail SET 
@@ -72,8 +113,7 @@
                                         by_notaris = $by_notaris_final,
                                         pend_asuransi = $pend_asuransi_final,
                                         pend_survey = $pend_survey_final,
-                                        pend_fidusia = $pend_fidusia_final,
-                                        pend_provisi = $pend_provisi_final
+                                        pend_fidusia = $pend_fidusia_final
                                         WHERE no_pin='$no_pin' AND id=$id_akhir
                                         ";
         
@@ -90,3 +130,6 @@
 	</script>';
 
 ?>
+
+</body>
+</html>

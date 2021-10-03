@@ -66,7 +66,7 @@
 
         <tr style="font-weight: bold; background-color: orange">
           <td colspan="2">Finance Category : INVST - INST LOAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td colspan="8" style="text-align: center;">SALDO AWAL</td>
+          <td colspan="7" style="text-align: center;">SALDO AWAL</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -79,7 +79,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -111,7 +111,6 @@
           <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -143,7 +142,6 @@
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -157,7 +155,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -169,7 +167,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -204,13 +202,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -241,7 +238,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -256,7 +252,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -268,7 +264,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -303,13 +299,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -340,7 +335,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -355,7 +349,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">SALDO AKHIR</td>
+          <td colspan="8" style="text-align: center;">SALDO AKHIR</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -367,7 +361,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -476,7 +470,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_akhir,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_akhir,0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -504,7 +497,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_final,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_final,0,'.',',') ?></td>
         </tr>
 
       </table>
@@ -533,7 +525,7 @@
 
         <tr style="font-weight: bold; background-color: orange">
           <td colspan="2">Finance Category : MKRJA - MODAL USAHA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td colspan="8" style="text-align: center;">SALDO AWAL</td>
+          <td colspan="7" style="text-align: center;">SALDO AWAL</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -546,7 +538,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -578,7 +570,6 @@
           <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -610,7 +601,6 @@
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -625,7 +615,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -637,7 +627,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -672,13 +662,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -709,7 +698,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -723,7 +711,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -735,7 +723,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -770,13 +758,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -807,7 +794,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -821,7 +807,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">SALDO AKHIR</td>
+          <td colspan="8" style="text-align: center;">SALDO AKHIR</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -833,7 +819,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -942,7 +928,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_akhir,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_akhir,0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -970,7 +955,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_final,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_final,0,'.',',') ?></td>
         </tr>
 
       </table>
@@ -997,7 +981,7 @@
 
         <tr style="font-weight: bold; background-color: orange">
           <td colspan="2">Finance Category : MTGNA - INST LOAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td colspan="8" style="text-align: center;">SALDO AWAL</td>
+          <td colspan="7" style="text-align: center;">SALDO AWAL</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -1010,7 +994,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -1042,7 +1026,6 @@
           <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -1074,7 +1057,6 @@
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right; font-weight: bold"><?php echo number_format($row_total['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -1090,7 +1072,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (ACTIVE)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -1102,7 +1084,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -1137,13 +1119,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -1174,7 +1155,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total2['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -1189,7 +1169,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
+          <td colspan="8" style="text-align: center;">PENYUSUTAN BULAN BERJALAN (CLOSED)</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -1201,7 +1181,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -1236,13 +1216,12 @@
               <td style="text-align: right;"><?php echo number_format($row['t_pend_asuransi'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_survey'],0,'.',',') ?></td>
               <td style="text-align: right;"><?php echo number_format($row['t_pend_fidusia'],0,'.',',') ?></td>
-              <td style="text-align: right;"><?php echo number_format($row['t_pend_provisi'],0,'.',',') ?></td>
             </tr>
             <?php } ?>
 
           <?php }else{ //jika tidak ada data ?>
             <tr>
-              <td colspan="9">Belum Ada Penyusutan Bulan Ini</td>
+              <td colspan="8">Belum Ada Penyusutan Bulan Ini</td>
             </tr>
           <?php } ?>
 
@@ -1273,7 +1252,6 @@
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_asuransi'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_survey'],0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_fidusia'],0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($row_total3['t_pend_provisi'],0,'.',',') ?></td>
         </tr>
       </table>
 
@@ -1288,7 +1266,7 @@
       <table border="1">
 
         <tr style="font-weight: bold; background-color: orange">
-          <td colspan="9" style="text-align: center;">SALDO AKHIR</td>
+          <td colspan="8" style="text-align: center;">SALDO AKHIR</td>
         </tr>
 
         <tr style="font-weight: bold; background-color: silver">
@@ -1300,7 +1278,7 @@
           <td>Pend Asuransi</td>
           <td>Pend Survey</td>
           <td>Pend Fidusia</td>
-          <td>Pend Provisi</td>
+          
         </tr>
 
         <?php  
@@ -1409,7 +1387,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_akhir,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_akhir,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_akhir,0,'.',',') ?></td>
         </tr>
         <?php } ?>
 
@@ -1437,7 +1414,6 @@
           <td style="text-align: right;"><?php echo number_format($pend_asuransi_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_survey_final,0,'.',',') ?></td>
           <td style="text-align: right;"><?php echo number_format($pend_fidusia_final,0,'.',',') ?></td>
-          <td style="text-align: right;"><?php echo number_format($pend_provisi_final,0,'.',',') ?></td>
         </tr>
 
       </table>
