@@ -9,33 +9,33 @@
   </tr>
 
 <?php  
-    $r_active_invst = tampil_active_invst($bulan,$tahun);
-    $data_active_invst = mysqli_fetch_array($r_active_invst);
+    $r_active_invst_jf = tampil_active_invst_jf($bulan_jf,$tahun_jf);
+    $data_active_invst_jf = mysqli_fetch_array($r_active_invst_jf);
 
-    $r_closedreguler_invst = tampil_closedreguler_invst($bulan,$tahun);
-    $data_closedreguler_invst = mysqli_fetch_array($r_closedreguler_invst);
+    $r_closedreguler_invst_jf = tampil_closedreguler_invst_jf($bulan_jf,$tahun_jf);
+    $data_closedreguler_invst_jf = mysqli_fetch_array($r_closedreguler_invst_jf);
 ?>
   <tr>
     <td>INVST - INST LOAN</td>
-    <td style="text-align: right;"><?php echo number_format($data_active_invst['t_refund_npv'] + $data_closedreguler_invst['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_active_invst_jf['t_provisi_jf'] + $data_closedreguler_invst_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
   <?php  
-    $r_active_mtgna = tampil_active_mtgna($bulan,$tahun);
-    $data_active_mtgna = mysqli_fetch_array($r_active_mtgna);
+    $r_active_mtgna_jf = tampil_active_mtgna_jf($bulan_jf,$tahun_jf);
+    $data_active_mtgna_jf = mysqli_fetch_array($r_active_mtgna_jf);
   ?>
   <tr>
     <td>MTGNA - INST LOAN</td>
-    <td style="text-align: right;"><?php echo number_format($data_active_mtgna['t_refund_npv'] + $data_closedreguler_mtgna['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_active_mtgna_jf['t_provisi_jf'] + $data_closedreguler_mtgna_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
   <?php  
-    $r_active_mkrja = tampil_active_mkrja($bulan,$tahun);
-    $data_active_mkrja = mysqli_fetch_array($r_active_mkrja);
+    $r_active_mkrja_jf = tampil_active_mkrja_jf($bulan_jf,$tahun_jf);
+    $data_active_mkrja_jf = mysqli_fetch_array($r_active_mkrja_jf);
   ?>
   <tr>
     <td>MKRJA - MODAL USAHA</td>
-    <td style="text-align: right;"><?php echo number_format($data_active_mkrja['t_refund_npv'] + $data_closedreguler_mkrja['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_active_mkrja_jf['t_provisi_jf'] + $data_closedreguler_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
 </table>

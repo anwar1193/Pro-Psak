@@ -11,17 +11,17 @@
   <tr>
     <td>INVST - INST LOAN</td>
 
-    <td style="text-align: right;"><?php echo number_format($data_salaw_invst['t_refund_npv'] - $data_active_invst['t_refund_npv'] - $data_closedreguler_invst['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_salaw_invst_jf['t_provisi_jf'] - $data_active_invst_jf['t_provisi_jf'] - $data_closedreguler_invst_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
   <tr>
     <td>MTGNA - INST LOAN</td>
-    <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna['t_refund_npv'] - $data_active_mtgna['t_refund_npv'] - $data_closedreguler_mtgna['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_salaw_mtgna_jf['t_provisi_jf'] - $data_active_mtgna_jf['t_provisi_jf'] - $data_closedreguler_mtgna_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
   <tr>
     <td>MKRJA - MODAL USAHA</td>
-    <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja['t_refund_npv'] - $data_active_mkrja['t_refund_npv'] - $data_closedreguler_mkrja['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja_jf['t_provisi_jf'] - $data_active_mkrja_jf['t_provisi_jf'] - $data_closedreguler_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
 </table>

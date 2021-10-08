@@ -27,12 +27,12 @@
   </tr>
 
   <?php  
-    $r_active_mkrja = tampil_active_mkrja($bulan,$tahun);
-    $data_active_mkrja = mysqli_fetch_array($r_active_mkrja);
+    $r_active_mkrja_jf = tampil_active_mkrja_jf($bulan_jf,$tahun_jf);
+    $data_active_mkrja_jf = mysqli_fetch_array($r_active_mkrja_jf);
   ?>
   <tr>
     <td>MKRJA - MODAL USAHA</td>
-    <td style="text-align: right;"><?php echo number_format($data_active_mkrja['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_active_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
 </table>

@@ -64,7 +64,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
 
-                  <li class="active"><a href="#tab_1" data-toggle="tab">Menu - PSAK</a></li>
+                  <li class="active"><a href="#tab_1" data-toggle="tab">Menu - Nasabah</a></li>
                   <li><a href="#tab_2" data-toggle="tab">Menu - JF</a></li>
           
                 </ul>
@@ -75,7 +75,7 @@
                     
                   <div class="box box-default">
                       <div class="box-header with-border">
-                        <h3 class="box-title">Rekap Mutasi PSAK (By Account Sts) - <?php echo $nama_bulan.' '.$tahun ?></h3>
+                        <h3 class="box-title">Rekap Mutasi Nasabah (By Account Sts) - <?php echo $nama_bulan.' '.$tahun ?></h3>
 
                         <span style="margin-left: 60%">
 
@@ -265,14 +265,81 @@
 </div>
 <!-- /.modal update paid --> 
 
+
+<!-- Modal Update Paid JF -->
+<div class="modal fade" id="modal-status_paid_jf">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Update Status Paid JF</h4>
+      </div>
+      <div class="modal-body">
+
+      <!-- Animasi Loading -->
+      <div id="loader-updatePaidJF" style="position: absolute; top: 160px; left: 45%;">
+        <img src="img/loading.gif" alt="" width="80px">
+      </div>
+        
+        <form method="post" action="update_paid_jf.php">
+          <table>
+            <tr>
+              <td style="text-align:right"><label>Pilih Bulan :</label></td>
+              <td>
+              <select name="bulan" style="width: 162px">
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="text-align:right"><label>Pilih Tahun :</label></td>
+              <td>
+              <input type="text" name="tahun" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+              </td>
+            </tr>
+          </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="tombol-updatePaidJF">Update Status Paid</button>
+      </div>
+
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal update paid JF --> 
+
+
 <script>
 
   $(document).ready(function(){
     $('#loader-updatePaid').hide();
+    $('#loader-updatePaidJF').hide();
 
     $(document).on('click', '#tombol-updatePaid', function(){
       $('#loader-updatePaid').show();
     });
+
+    $('#tombol-updatePaidJF').click(function(){
+      $('#loader-updatePaidJF').show();
+    })
 
   });
 
