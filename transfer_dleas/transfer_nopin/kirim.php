@@ -57,64 +57,61 @@
 
 ?>
 
-		<?php
-		// Koneksi ke Server db dleas (10.20.0.8)
-		include '../koneksi_kirim.php';
-		$tahun_sekarang = date('Y');
+<?php
+	// Koneksi ke Server db dleas (10.20.0.8)
+	include '../koneksi_kirim.php';
+	$tahun_sekarang = date('Y');
 
-		while($row_nopin = mysqli_fetch_array($res_nopin)){
+	$noPin = "";
 
-			$no_pin = $row_nopin['no_pin'];
+	while($row_nopin = mysqli_fetch_array($res_nopin)){
+		$noPin .= $row_nopin['no_pin']."','";
+	}
 
-			$query = "SELECT NoPin,AccountSts FROM [DLEAS].[dbo].[v_rptAllDataCreditReview] WHERE NoPin='$no_pin'";
-			$result = sqlsrv_query($koneksi,$query) or die ('error fungsi');
+	$query = "SELECT NoPin,AccountSts FROM [DLEAS].[dbo].[v_rptAllDataCreditReview] WHERE NoPin IN ('".substr($noPin,0,strlen($noPin)-3)."')";
 
-			// Ambil Tanggal dari Dleas
-			$q_dateDleas = "SELECT APPVALUE FROM APPSETTING WHERE APPCODE='APPDATE'";
-			$res_dateDleas = sqlsrv_query($koneksi, $q_dateDleas);
-			$row_dateDleas = sqlsrv_fetch_array($res_dateDleas);
-			$dateDleas = $row_dateDleas['APPVALUE']; // 17/06/2021
+	$result = sqlsrv_query($koneksi,$query) or die ('error fungsi');
 
-			while($row = sqlsrv_fetch_array($result)){
+	// Ambil Tanggal dari Dleas
+	$q_dateDleas = "SELECT APPVALUE FROM APPSETTING WHERE APPCODE='APPDATE'";
+	$res_dateDleas = sqlsrv_query($koneksi, $q_dateDleas);
+	$row_dateDleas = sqlsrv_fetch_array($res_dateDleas);
+	$dateDleas = $row_dateDleas['APPVALUE']; // 17/06/2021
 
-				$nilai1 = $row['NoPin'];
-				$nilai2 = $row['AccountSts'];
-				$nilai3 = $dateDleas;
+	while($row = sqlsrv_fetch_array($result)){
 
-				// pengiriman ke situsku.com via CURL
-				$url = "10.20.0.30/Pro-Psak/transfer_dleas/transfer_nopin/terima.php";
+		$nilai1 = $row['NoPin'];
+		$nilai2 = $row['AccountSts'];
+		$nilai3 = $dateDleas;
 
-				$curlHandle = curl_init();
-				curl_setopt($curlHandle, CURLOPT_URL, $url);
-				curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "data1=".$nilai1."&data2=".$nilai2."&data3=".$nilai3);
-				curl_setopt($curlHandle, CURLOPT_HEADER, 0);
-				curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
-				curl_setopt($curlHandle, CURLOPT_POST, 1);
-				curl_exec($curlHandle);
-				curl_close($curlHandle);
+		// pengiriman ke situsku.com via CURL
+		$url = "10.20.0.30/Pro-Psak/transfer_dleas/transfer_nopin/terima.php";
 
-			}
+		$curlHandle = curl_init();
+		curl_setopt($curlHandle, CURLOPT_URL, $url);
+		curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "data1=".$nilai1."&data2=".$nilai2."&data3=".$nilai3);
+		curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+		curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+		curl_setopt($curlHandle, CURLOPT_POST, 1);
+		curl_exec($curlHandle);
+		curl_close($curlHandle);
 
-			?>
+	}
 
-			<?php
+?>
 
-				}
+<?php 
 
-			?>
+	// echo "<h1>Transfer Done !!</h1>";
 
-		<?php 
-
-			// echo "<h1>Transfer Done !!</h1>";
-
-			echo "<script>
-				alert('Update Account Status Berhasil');
-				document.location.href = '../../home.php';
-			</script>";
-			
-			} 
-		?>
+	echo "<script>
+		alert('Update Account Status Berhasil');
+		document.location.href = '../../data_accStatus.php';
+	</script>";
+	
+	} 
+?>
 
 </body>
 </html>
