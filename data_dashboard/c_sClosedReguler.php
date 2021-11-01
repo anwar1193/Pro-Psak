@@ -22,19 +22,12 @@
   <tr>
     <td>INVST - INST LOAN</td>
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_npv'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_asuransi'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_adm'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_ins_receivable'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_by_notaris'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_asuransi'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_survey'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_fidusia'],0,'.',',') ?></td>
   </tr>
 
@@ -45,19 +38,12 @@
   <tr>
     <td>MTGNA - INST LOAN</td>
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_refund_npv'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_refund_asuransi'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_refund_adm'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_ins_receivable'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_by_notaris'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_pend_asuransi'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_pend_survey'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mtgna['t_pend_fidusia'],0,'.',',') ?></td>
   </tr>
 
@@ -68,20 +54,25 @@
   <tr>
     <td>MKRJA - MODAL USAHA</td>
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_refund_npv'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_refund_asuransi'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_refund_adm'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_ins_receivable'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_by_notaris'],0,'.',',') ?></td>
-
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_pend_asuransi'],0,'.',',') ?></td>
-
-    <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_pend_survey'],0,'.',',') ?></td>
-    
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_pend_survey'],0,'.',',') ?></td>    
     <td style="text-align: right;"><?php echo number_format($data_closedreguler_mkrja['t_pend_fidusia'],0,'.',',') ?></td>
+  </tr>
+
+  <tr style="background-color:#eee; font-weight:bold">
+    <td>TOTAL</td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_npv']+$data_closedreguler_mtgna['t_refund_npv']+$data_closedreguler_mkrja['t_refund_npv'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_asuransi']+$data_closedreguler_mtgna['t_refund_asuransi']+$data_closedreguler_mkrja['t_refund_asuransi'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_refund_adm']+$data_closedreguler_mtgna['t_refund_adm']+$data_closedreguler_mkrja['t_refund_adm'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_ins_receivable']+$data_closedreguler_mtgna['t_ins_receivable']+$data_closedreguler_mkrja['t_ins_receivable'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_by_notaris']+$data_closedreguler_mtgna['t_by_notaris']+$data_closedreguler_mkrja['t_by_notaris'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_asuransi']+$data_closedreguler_mtgna['t_pend_asuransi']+$data_closedreguler_mkrja['t_pend_asuransi'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_survey']+$data_closedreguler_mtgna['t_pend_survey']+$data_closedreguler_mkrja['t_pend_survey'],0,'.',',') ?></td>
+    <td style="text-align: right;"><?php echo number_format($data_closedreguler_invst['t_pend_fidusia']+$data_closedreguler_mtgna['t_pend_fidusia']+$data_closedreguler_mkrja['t_pend_fidusia'],0,'.',',') ?></td>
   </tr>
 
 </table>
