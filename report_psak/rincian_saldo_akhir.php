@@ -18,6 +18,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Saldo Akhir</title>
+
+    <style>
+        .str{ mso-number-format:\@; }
+    </style>
+
 </head>
 <body>
 
@@ -29,7 +34,7 @@
                 Finance Category - <?php echo $fincat_saldo_akhir; ?>
             </th>
 
-            <th colspan="8">
+            <th colspan="9">
                 SALDO AKHIR
             </th>
         </tr>
@@ -39,6 +44,7 @@
             <th>NoPin</th>
             <th>NoRek</th>
             <th>AccountSts</th>
+            <th>Status Penyusutan</th>
             <th>Kode Cabang</th>
             <th>Cabang</th>
             <th>AccountName</th>
@@ -127,9 +133,17 @@
         ?>
         <tr>
             <td><?php echo $no; ?></td>
-            <td><?php echo $row['no_pin']; ?></td>
-            <td><?php echo $row_lainnya['no_rek'] ?></td>
+            <td class="str"><?php echo $row['no_pin']; ?></td>
+            <td class="str"><?php echo $row_lainnya['no_rek'] ?></td>
             <td><?php echo $row['account_sts']; ?></td>
+
+            <!-- Status Penyusutan -->
+            <?php if($row_lainnya['paid_status'] == 'Done'){ ?>
+                <td style="text-align:center"><?php echo $row_lainnya['paid_status'] ?></td>
+            <?php }else{ ?>
+                <td style="text-align:center">Amortize</td>
+            <?php } ?>
+
             <td style="text-align:center;mso-number-format:\@;"><?php echo $row['kode_cabang']; ?></td>
             <td><?php echo $row['cabang']; ?></td>
             <td><?php echo $row_lainnya['account_name']; ?></td>
@@ -145,7 +159,7 @@
         <?php } ?>
 
         <tr style="background-color: greenyellow; font-weight: bold;">
-            <td style="text-align: center;" colspan="7">TOTAL</td>
+            <td style="text-align: center;" colspan="8">TOTAL</td>
             <td style="text-align:right"><?php echo number_format($row_total['t_refund_npv'], 0, '.', ','); ?></td>
             <td style="text-align:right"><?php echo number_format($row_total['t_refund_asuransi'], 0, '.', ','); ?></td>
             <td style="text-align:right"><?php echo number_format($row_total['t_refund_adm'], 0, '.', ','); ?></td>

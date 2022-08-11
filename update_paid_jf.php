@@ -86,9 +86,72 @@
 	}
 
 
+	// Update Status Account..................................................................................
+	// looping data psak
+    $query_data = "SELECT * FROM tbl_jf";
+    $res_data = mysqli_query($koneksi, $query_data) or die('error looping data');
+    while($row_data = mysqli_fetch_array($res_data)){
+        $no_pin = $row_data['no_pin'];
+		$status_lama = $row_data['bank_awal'];
+
+        // Ambil Account Status di tbl_nopin
+        $query_status = "SELECT * FROM tbl_nopin_jf WHERE no_pin = '$no_pin'";
+        $res_status = mysqli_query($koneksi, $query_status) or die ('error ambil status');
+        $row_status = mysqli_fetch_array($res_status);
+        $status_baru = $row_status['account_status'];
+
+		// validasi jika account status blm di tarik dari dleas
+		$cek_status = mysqli_num_rows($res_status);
+
+		if($cek_status < 1){ // jika nopin tidak tersedia / belum di tarik dari dleas
+
+			echo '<script>
+				alert("Nopin/Status Tidak Tersedia, Silahkan Generate Account Status atau Hubungi Team IT");
+				window.location="home.php";
+			</script>';
+			exit;
+
+		}else{ // jika nopin ada / sudah di tarik dari dleas
+
+			// Update status di tbl_jf
+			$query_update = "UPDATE tbl_jf SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
+			mysqli_query($koneksi, $query_update) or die('error update');
+	
+
+			// Jika Status Baru nya SELF FINANCE & Ada perubahan Bank, maka ubah paid_status di tbl_psak jadi Done
+			if($status_baru == 'SELF FINANCE' OR $status_baru != $status_lama){
+
+				// Update status di tbl_psak_detail
+				$query_update_detail = "UPDATE tbl_jf_detail SET account_sts='$status_baru', perubahan_bank='ya' WHERE no_pin='$no_pin'";
+				mysqli_query($koneksi, $query_update_detail) or die('error update detail');
+
+				// update paid_status di tbl_psak
+				$q_update_paidSts2 = "UPDATE tbl_jf SET paid_status='Done' WHERE no_pin='$no_pin'";
+				mysqli_query($koneksi, $q_update_paidSts2);
+			}else{
+				// Update status di tbl_psak_detail
+				$query_update_detail = "UPDATE tbl_jf_detail SET account_sts='$status_baru' WHERE no_pin='$no_pin'";
+				mysqli_query($koneksi, $query_update_detail) or die('error update detail');
+			}
+
+		}
+
+    }
+
+
 	// Update Paid ..............................................................................................
-	$query_update_active = "UPDATE tbl_jf_detail SET status_paid='paid' WHERE bulan=$bulan AND tahun=$tahun";
+	$query_update_active = "UPDATE tbl_jf_detail SET status_paid='paid' WHERE bulan=$bulan AND tahun=$tahun AND account_sts != 'SELF FINANCE' OR
+	bulan=$bulan AND tahun=$tahun AND perubahan_bank = ''";
 	mysqli_query($koneksi,$query_update_active) or die ('error fungsi');
+
+	$query_update_close = "UPDATE tbl_jf_detail SET status_paid='closed', bulan_close='$bulan', tahun_close=$tahun WHERE 
+		bulan>=$bulan AND tahun>=$tahun AND bulan_close='' AND account_sts='SELF FINANCE' OR 
+		bulan>=$bulan AND tahun>=$tahun AND bulan_close='' AND perubahan_bank = 'ya' OR 
+		tahun>$tahun AND account_sts='SELF FINANCE' AND bulan_close='' OR
+		tahun>$tahun AND perubahan_bank = 'ya' AND bulan_close=''
+		";
+
+	mysqli_query($koneksi,$query_update_close) or die ('error fungsi');
 
 
 	// Input data penyusutan Active ke tbl_penyusutan_active_jf......................................................
@@ -109,6 +172,29 @@
         $query_simpan_active = "INSERT INTO tbl_penyusutan_active_jf(fincat, bulan, tahun, provisi_jf) VALUES('$fincat', '$bulan', '$tahun', $provisi_jf)";
 
         mysqli_query($koneksi, $query_simpan_active);
+	}
+
+
+	// Input data penyusutan Closed ke tbl_penyusutan_closed......................................................
+	$query_tampil_closed = "SELECT 
+				fincat,
+				SUM(provisi_jf) AS t_provisi_jf
+				FROM tbl_jf_detail WHERE 
+						account_sts='SELF FINANCE' AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed' 
+						OR
+						perubahan_bank='ya' AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
+				GROUP BY fincat
+						";
+	$result_tampil_closed = mysqli_query($koneksi,$query_tampil_closed) or die ('error fungsi tampil closed');
+
+	while($row = mysqli_fetch_array($result_tampil_closed)){
+		$fincat = $row['fincat'];
+        $provisi_jf = $row['t_provisi_jf'];
+
+        // Simpan ke tbl_saldo_awal
+        $query_simpan_closed = "INSERT INTO tbl_penyusutan_closed_jf(fincat, bulan, tahun, provisi_jf) VALUES('$fincat', '$bulan', '$tahun', $provisi_jf)";
+
+        mysqli_query($koneksi, $query_simpan_closed);
 	}
 
 
@@ -177,7 +263,9 @@
 				fincat,
 				SUM(provisi_jf) AS t_provisi_jf
 				FROM tbl_jf_detail WHERE 
-						(account_sts='CLOSED - REGULER' OR account_sts='CLOSED - REPOSES' OR account_sts='CLOSED - WO') AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
+						account_sts='SELF FINANCE' AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed' 
+						OR
+						perubahan_bank='ya' AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed' 
 				GROUP BY cabang, fincat
 						";
 	$result_tampil_closed_c = mysqli_query($koneksi,$query_tampil_closed_c) or die ('error fungsi tampil closed');
@@ -260,7 +348,7 @@
 
 	// Alert update berhasil........................................................................................
 	echo '<script>
-		alert("Status Berhasil di Update");window.location="home.php";
+		alert("Status Berhasil di Update");window.location="home_jf.php";
 	</script>';
 
 ?>

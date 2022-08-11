@@ -13,6 +13,13 @@
 		return $result;
 	}
 
+	function tampil_accrue_gen(){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_accrue WHERE status_generate='belum'";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil accrue gen');
+		return $result;
+	}
+
 	function tampil_psak(){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE status_generate='generated'";
@@ -27,6 +34,13 @@
 		return $result;
 	}
 
+	function tampil_accrue(){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_accrue WHERE status_generate='generated'";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil accrue gen');
+		return $result;
+	}
+
 	function tampil_saldo_awal($no_pin){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE no_pin=$no_pin";
@@ -37,6 +51,13 @@
 	function tampil_saldo_awal_jf($no_pin){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_jf WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi saldo awal');
+		return $result;
+	}
+
+	function tampil_saldo_awal_accrue($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_accrue WHERE no_pin=$no_pin";
 		$result = mysqli_query($koneksi, $query) or die('error fungsi saldo awal');
 		return $result;
 	}
@@ -64,6 +85,16 @@
 		$query = "SELECT
 					SUM(provisi_jf) AS provisi_jf_p
 					FROM tbl_jf_detail
+					WHERE no_pin=$no_pin AND status_paid='paid'";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
+		return $result;
+	}
+
+	function tampil_penyusutan_accrue($no_pin){
+		global $koneksi;
+		$query = "SELECT
+					SUM(accrue_restru) AS accrue_restru_p
+					FROM tbl_accrue_detail
 					WHERE no_pin=$no_pin AND status_paid='paid'";
 		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
 		return $result;
@@ -97,6 +128,16 @@
 		return $result;
 	}
 
+	function tampil_saldo_akhir_accrue($no_pin){
+		global $koneksi;
+		$query = "SELECT
+					SUM(accrue_restru) AS accrue_restru_akh
+					FROM tbl_accrue_detail
+					WHERE no_pin=$no_pin AND status_paid='belum'";
+		$result = mysqli_query($koneksi, $query) or die('error fungsi penyusutan');
+		return $result;
+	}
+
 	function hapus_psak($no_pin){
 		global $koneksi;
 		$query = "DELETE FROM tbl_psak WHERE no_pin = $no_pin";
@@ -121,6 +162,13 @@
 		return $result;
 	}
 
+	function tampil_accrue_detail($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_accrue_detail WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
 	function tampil_psak_nopin($no_pin){
 		global $koneksi;
 		$query = "SELECT * FROM tbl_psak WHERE no_pin=$no_pin";
@@ -132,6 +180,13 @@
 		global $koneksi;
 		$query = "SELECT * FROM tbl_jf WHERE no_pin=$no_pin";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_accrue_nopin($no_pin){
+		global $koneksi;
+		$query = "SELECT * FROM tbl_accrue WHERE no_pin=$no_pin";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil accrue gen');
 		return $result;
 	}
 
@@ -157,6 +212,15 @@
 		$query = "SELECT 
 					provisi_jf AS t_provisi_jf
 					FROM tbl_saldo_awal_jf WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
+	function tampil_salaw_invst_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_saldo_awal_accrue WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
 		return $result;
 	}
@@ -187,6 +251,15 @@
 		return $result;
 	}
 
+	function tampil_salaw_mtgna_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_saldo_awal_accrue WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
 	function tampil_salaw_mkrja($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -209,6 +282,15 @@
 		$query = "SELECT 
 					provisi_jf AS t_provisi_jf
 					FROM tbl_saldo_awal_jf WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
+		return $result;
+	}
+
+	function tampil_salaw_mkrja_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_saldo_awal_accrue WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil saldo awal');
 		return $result;
 	}
@@ -239,6 +321,15 @@
 		return $result;
 	}
 
+	function tampil_active_invst_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_active_accrue WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
 	function tampil_active_mtgna($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -261,6 +352,15 @@
 		$query = "SELECT 
 					provisi_jf AS t_provisi_jf
 					FROM tbl_penyusutan_active_jf WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
+	function tampil_active_mtgna_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_active_accrue WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
 		return $result;
 	}
@@ -291,6 +391,15 @@
 		return $result;
 	}
 
+	function tampil_active_mkrja_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_active_accrue WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
 	function tampil_active_all($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -313,6 +422,15 @@
 		$query = "SELECT 
 					SUM(provisi_jf) AS t_provisi_jf
 					FROM tbl_penyusutan_active_jf WHERE bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
+		return $result;
+	}
+
+	function tampil_active_all_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					SUM(accrue_restru) AS t_accrue_restru
+					FROM tbl_penyusutan_active_accrue WHERE bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil active mtgna');
 		return $result;
 	}
@@ -343,6 +461,15 @@
 		return $result;
 	}
 
+	function tampil_closedreguler_invst_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_closed_accrue WHERE fincat='INVST - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
 	function tampil_closedreguler_mtgna($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -365,6 +492,15 @@
 		$query = "SELECT 
 					provisi_jf AS t_provisi_jf
 					FROM tbl_penyusutan_closed_jf WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_closedreguler_mtgna_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_closed_accrue WHERE fincat='MTGNA - INST LOAN' AND bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
 		return $result;
 	}
@@ -395,6 +531,15 @@
 		return $result;
 	}
 
+	function tampil_closedreguler_mkrja_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					accrue_restru AS t_accrue_restru
+					FROM tbl_penyusutan_closed_accrue WHERE fincat='MKRJA - MODAL USAHA' AND bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
 	function tampil_closedreguler_all($bulan, $tahun){
 		global $koneksi;
 		$query = "SELECT 
@@ -417,6 +562,15 @@
 		$query = "SELECT 
 					SUM(provisi_jf) AS t_provisi_jf
 					FROM tbl_penyusutan_closed_jf WHERE bulan=$bulan AND tahun=$tahun";
+		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
+		return $result;
+	}
+
+	function tampil_closedreguler_all_accrue($bulan, $tahun){
+		global $koneksi;
+		$query = "SELECT 
+					SUM(accrue_restru) AS t_accrue_restru
+					FROM tbl_penyusutan_closed_accrue WHERE bulan=$bulan AND tahun=$tahun";
 		$result = mysqli_query($koneksi,$query) or die ('error fungsi tampil psak gen');
 		return $result;
 	}

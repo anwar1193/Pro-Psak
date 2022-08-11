@@ -35,4 +35,10 @@
     <td style="text-align: right;"><?php echo number_format($data_active_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
+
+  <tr style="background-color:#eee; font-weight:bold">
+    <td>TOTAL</td>
+    <td style="text-align: right;"><?php echo number_format($data_active_invst_jf['t_provisi_jf']+$data_active_mtgna_jf['t_provisi_jf']+$data_active_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
+  </tr>
+
 </table>

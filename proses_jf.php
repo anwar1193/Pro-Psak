@@ -75,8 +75,13 @@ if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['t
         $kode_cabang = $sheetData[$i]['4'];
         $cabang = $sheetData[$i]['5'];
         $account_name = $sheetData[$i]['6'];
-        $restru_date = $sheetData[$i]['7'];
-        $booking_date = $sheetData[$i]['8'];
+
+        $restru_date0 = $sheetData[$i]['7'];
+        $restru_date = date('Y-m-d', strtotime($restru_date0));
+
+        $booking_date0 = $sheetData[$i]['8'];
+        $booking_date = date('Y-m-d', strtotime($booking_date0));
+
         $sisa_tenor = $sheetData[$i]['9'];
         $tgl_jatuh_tempo = $sheetData[$i]['10'];
         $fincat = $sheetData[$i]['11'];
@@ -98,8 +103,8 @@ if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['t
             </script>';
             exit;
         }else{
-            mysqli_query($koneksi, "insert into tbl_jf(no_pin, no_rek, account_sts, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, provisi_jf, tanggal_upload, status_generate) 
-            values ('$no_pin','$no_rek','$account_sts', '$kode_cabang', '$cabang', '$account_name', '$restru_date', '$booking_date', $sisa_tenor, '$tgl_jatuh_tempo', '$fincat', $provisi_jf, '$tanggal_upload', '$status_generate')");
+            mysqli_query($koneksi, "insert into tbl_jf(no_pin, no_rek, account_sts, bank_awal, kode_cabang, cabang, account_name, restru_date, booking_date, sisa_tenor, tgl_jatuh_tempo, fincat, provisi_jf, tanggal_upload, status_generate) 
+            values ('$no_pin','$no_rek','$account_sts','$account_sts', '$kode_cabang', '$cabang', '$account_name', '$restru_date', '$booking_date', $sisa_tenor, '$tgl_jatuh_tempo', '$fincat', $provisi_jf, '$tanggal_upload', '$status_generate')");
         }
 
         

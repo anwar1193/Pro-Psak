@@ -46,6 +46,7 @@
 <?php
 
 	include '../koneksi_terima.php';
+	date_default_timezone_set("Asia/Jakarta");
 	$query = "DELETE FROM tbl_nopin";
 	$hapus_data_lama = mysqli_query($koneksi,$query);
 
@@ -78,18 +79,22 @@
 	$row_dateDleas = sqlsrv_fetch_array($res_dateDleas);
 	$dateDleas = $row_dateDleas['APPVALUE']; // 17/06/2021
 
+	// Waktu Tarik Data (Berdasarkan Tanggal Server)
+	$waktu_tarik_data = date('Y-m-d h:i:s');
+
 	while($row = sqlsrv_fetch_array($result)){
 
 		$nilai1 = $row['NoPin'];
 		$nilai2 = $row['AccountSts'];
 		$nilai3 = $dateDleas;
+		$nilai4 = $waktu_tarik_data;
 
 		// pengiriman ke situsku.com via CURL
 		$url = "10.20.0.30/Pro-Psak/transfer_dleas/transfer_nopin/terima.php";
 
 		$curlHandle = curl_init();
 		curl_setopt($curlHandle, CURLOPT_URL, $url);
-		curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "data1=".$nilai1."&data2=".$nilai2."&data3=".$nilai3);
+		curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "data1=".$nilai1."&data2=".$nilai2."&data3=".$nilai3."&data4=".$nilai4);
 		curl_setopt($curlHandle, CURLOPT_HEADER, 0);
 		curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);

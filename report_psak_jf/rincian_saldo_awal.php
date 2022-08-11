@@ -94,8 +94,8 @@
         ?>
         <tr>
             <td><?php echo $no; ?></td>
-            <td><?php echo $row['no_pin']; ?></td>
-            <td><?php echo $row['no_rek'] ?></td>
+            <td style="text-align:center;mso-number-format:\@;"><?php echo $row['no_pin']; ?></td>
+            <td style="text-align:center;mso-number-format:\@;"><?php echo $row['no_rek'] ?></td>
             <td><?php echo $row['account_sts']; ?></td>
             <td style="text-align:center;mso-number-format:\@;"><?php echo $row['kode_cabang']; ?></td>
             <td><?php echo $row['cabang']; ?></td>

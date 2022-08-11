@@ -53,7 +53,7 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Rekap Mutasi (By Cabang) - <?php echo $nama_bulan.' '.$tahun ?></h3>
 
-                <span style="margin-left: 60%">
+                <div style="position:absolute; right:0; top:0">
 
                   <a href="home.php" class="btn btn-info btn-sm"><i class="fa fa-list"></i> By Account Sts</a>
 
@@ -65,7 +65,7 @@
                     <i class="fa fa-refresh"></i> Export Excel
                   </a>
 
-                </span>
+                </div>
 
               </div>
               <div class="box-body">

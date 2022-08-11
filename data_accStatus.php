@@ -39,6 +39,7 @@
                       <th>No Pin</th>
                       <th>Account Sts</th>
                       <th style="text-align: center;">App Date</th>
+                      <th style="text-align: center;">Waktu Tarik Data</th>
                     </tr>
                   </thead>
 
@@ -56,6 +57,7 @@
                       <td><?php echo $row['account_status'] ?></td>
 
                       <td style="text-align: center"><?php echo $row['app_date'] ?></td>
+                      <td style="text-align: center"><?php echo date('d-m-Y h:i:s', strtotime($row['waktu_tarik_data'])) ?></td>
                     </tr>
                     <?php } ?>
                   </tbody>

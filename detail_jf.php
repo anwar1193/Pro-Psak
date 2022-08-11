@@ -174,7 +174,7 @@
                     $row_penyusutan = mysqli_fetch_array($result_penyusutan);
                   ?>
 
-                  <?php if($data['account_sts'] != 'ACTIVE'){ ?>
+                  <?php if($data['account_sts'] != 'JF-BPR BAHANA EKONOMI SENTOSA'){ ?>
                   
                     <tr>
                       <td style="font-weight:bold">TOTAL PENYUSUTAN</td>
@@ -197,7 +197,7 @@
                     $row_salakh = mysqli_fetch_array($result_salakh);
                   ?>
 
-                  <?php if($data['account_sts'] != 'ACTIVE'){ ?>
+                  <?php if($data['account_sts'] != 'JF-BPR BAHANA EKONOMI SENTOSA'){ ?>
 
                     <tr>
                       <td style="font-weight:bold">SALDO AKHIR</td>

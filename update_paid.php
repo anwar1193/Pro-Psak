@@ -192,7 +192,7 @@
 				SUM(pend_fidusia) AS t_pend_fidusia,
 				SUM(pend_provisi) AS t_pend_provisi
 				FROM tbl_psak_detail WHERE 
-						(account_sts='CLOSED - REGULER' OR account_sts='CLOSED - REPOSES' OR account_sts='CLOSED - WO') AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
+						bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
 				GROUP BY fincat
 						";
 	$result_tampil_closed = mysqli_query($koneksi,$query_tampil_closed) or die ('error fungsi tampil closed');
@@ -339,7 +339,7 @@
 				SUM(pend_fidusia) AS t_pend_fidusia,
 				SUM(pend_provisi) AS t_pend_provisi
 				FROM tbl_psak_detail WHERE 
-						(account_sts='CLOSED - REGULER' OR account_sts='CLOSED - REPOSES' OR account_sts='CLOSED - WO') AND bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
+						bulan_close=$bulan AND tahun_close=$tahun AND status_paid='closed'
 				GROUP BY cabang, fincat
 						";
 	$result_tampil_closed_c = mysqli_query($koneksi,$query_tampil_closed_c) or die ('error fungsi tampil closed');

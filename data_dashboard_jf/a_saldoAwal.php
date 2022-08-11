@@ -35,4 +35,9 @@
     <td style="text-align: right;"><?php echo number_format($data_salaw_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
   </tr>
 
+  <tr style="background-color:#eee; font-weight:bold">
+    <td>TOTAL</td>
+    <td style="text-align: right;"><?php echo number_format($data_salaw_invst_jf['t_provisi_jf']+$data_salaw_mtgna_jf['t_provisi_jf']+$data_salaw_mkrja_jf['t_provisi_jf'],0,'.',',') ?></td>
+  </tr>
+
 </table>

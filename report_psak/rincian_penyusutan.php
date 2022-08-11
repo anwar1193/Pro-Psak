@@ -36,6 +36,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Penyusutan</title>
+
+    <style>
+        .str{ mso-number-format:\@; }
+    </style>
+    
 </head>
 <body>
 
@@ -48,7 +53,7 @@
                 Finance Category - <?php echo $fincat_psak; ?>
             </th>
 
-            <th colspan="8">
+            <th colspan="9">
                 PENYUSUTAN BULAN BERJALAN
             </th>
         </tr>
@@ -58,6 +63,7 @@
             <th>NoPin</th>
             <th>NoRek</th>
             <th>AccountSts</th>
+            <th>Status Penyusutan</th>
             <th>Kode Cabang</th>
             <th>Cabang</th>
             <th>AccountName</th>
@@ -138,7 +144,7 @@
                 $row_active = mysqli_fetch_array($result_active);
 
 
-                // TOTAL ACTIVE & TOTAL CLOSES
+                // TOTAL ACTIVE & TOTAL CLOSED
                 $refund_npv_active += $row_active['t_refund_npv'];
                 $refund_asuransi_active += $row_active['t_refund_asuransi'];
                 $refund_adm_active += $row_active['t_refund_adm'];
@@ -161,10 +167,18 @@
         ?>
         <tr>
             <td><?php echo $no; ?></td>
-            <td><?php echo $row['no_pin']; ?></td>
-            <td><?php echo $row_lainnya['no_rek'] ?></td>
+            <td class="str"><?php echo $row['no_pin']; ?></td>
+            <td class="str"><?php echo $row_lainnya['no_rek'] ?></td>
             <td><?php echo $row['account_sts']; ?></td>
-            <td style="text-align:center;mso-number-format:\@;"><?php echo $row['kode_cabang']; ?></td>
+
+            <!-- Status Penyusutan -->
+            <?php if($row_lainnya['paid_status'] == 'Done'){ ?>
+                <td style="text-align:center"><?php echo $row_lainnya['paid_status'] ?></td>
+            <?php }else{ ?>
+                <td style="text-align:center">Amortize</td>
+            <?php } ?>
+
+            <td class="str"><?php echo $row['kode_cabang']; ?></td>
             <td><?php echo $row['cabang']; ?></td>
             <td><?php echo $row_lainnya['account_name']; ?></td>
 
@@ -191,7 +205,7 @@
         <?php } ?>
 
         <tr style="background-color: greenyellow; font-weight: bold;">
-            <td style="text-align: center;" colspan="7">TOTAL</td>
+            <td style="text-align: center;" colspan="8">TOTAL</td>
             <td style="text-align:right"><?php echo number_format($refund_npv_active+$refund_npv_closed, 0, '.', ','); ?></td>
             <td style="text-align:right"><?php echo number_format($refund_asuransi_active+$refund_asuransi_closed, 0, '.', ','); ?></td>
             <td style="text-align:right"><?php echo number_format($refund_adm_active+$refund_adm_closed, 0, '.', ','); ?></td>
