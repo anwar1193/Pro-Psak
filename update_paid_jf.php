@@ -39,7 +39,7 @@
     
     <div class="loading">
         <span>Sedang Di Proses..</span>
-        <img src="loading.gif" alt="">
+        <img src="img/loading.gif" alt="">
     </div>
 
 

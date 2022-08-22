@@ -199,6 +199,11 @@
                 <input type="file" name="berkas_excel" class="form-control" id="exampleInputFile" required>
               </div>
 
+              <!-- Animasi Loading -->
+              <div id="loader-dataAwalJF" style="position: absolute; top: 0; left: 45%;">
+                <img src="img/loading.gif" alt="" width="80px">
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
@@ -232,6 +237,11 @@
               <div class="form-group">
                 <label for="exampleInputFile">File Upload</label>
                 <input type="file" name="berkas_excel" class="form-control" id="exampleInputFile" required>
+              </div>
+
+              <!-- Animasi Loading -->
+              <div id="loader-dataAwalAccrue" style="position: absolute; top: 0; left: 45%;">
+                <img src="img/loading.gif" alt="" width="80px">
               </div>
 
             </div>
@@ -315,7 +325,7 @@
                 </a></span>
 
                 <!-- transfer_dleas/transfer_nopin/kirim.php -->
-                <span><a href="transfer_dleas/transfer_nopin_jf/kirim.php" class="btn btn-success btn-xs" id="tombol-tarik-dleas">
+                <span><a href="transfer_dleas/transfer_nopin_jf/kirim.php" class="btn btn-success btn-xs" id="tombol-tarik-dleas-jf">
                   <i class="fa fa-refresh"></i> Tarik Dari Dleas
                 </a></span>
 
@@ -366,7 +376,7 @@
                 </a></span>
 
                 <!-- transfer_dleas/transfer_nopin/kirim.php -->
-                <span><a href="transfer_dleas/transfer_nopin_accrue/kirim.php" class="btn btn-success btn-xs" id="tombol-tarik-dleas">
+                <span><a href="transfer_dleas/transfer_nopin_accrue/kirim.php" class="btn btn-success btn-xs" id="tombol-tarik-dleas-accrue">
                   <i class="fa fa-refresh"></i> Tarik Dari Dleas
                 </a></span>
 
@@ -456,14 +466,14 @@
               </div>
 
               <!-- Animasi Loading -->
-              <!-- <div id="loader_statusAccrue" style="position: absolute; top: 0; left: 45%;">
+              <div id="loader_paymentAccrue" style="position: absolute; top: 0; left: 45%;">
                 <img src="img/loading.gif" alt="" width="80px">
-              </div> -->
+              </div>
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-              <button type="submit" class="btn btn-primary" id="tombol-upload-statusAccrue"><i class="fa fa-refresh"></i> Tarik Dleas</button>
+              <button type="submit" class="btn btn-primary" id="tombol-payment-accrue"><i class="fa fa-refresh"></i> Tarik Dleas</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -1168,6 +1178,9 @@
           $('#loader_statusJF').hide();
           $('#loader_statusAccrue').hide();
           $('#loader-dataAwal').hide();
+          $('#loader-dataAwalJF').hide();
+          $('#loader-dataAwalAccrue').hide();
+          $('#loader_paymentAccrue').hide();
           $('#loader-report1').hide();
           $('#loader-report2').hide();
           $('#loader-report3').hide();
@@ -1181,16 +1194,32 @@
           $('#loader-report3accrue').hide();
           $('#loader-report4accrue').hide();
 
-          $(document).on('click', '#tombol-tarik-dleas, #tombol-upload-status, #tombol-upload-statusJF', function(){
-            $('#loader').show();
-          });
-
-          $(document).on('click', '#tombol-dataAwal, #tombol-dataAwalJF, #tombol-dataAwalAccrue', function(){
+          $(document).on('click', '#tombol-dataAwal', function(){
             $('#loader-dataAwal').show();
           });
 
-          $(document).on('click', '#tombol-upload-statusAccrue', function(){
+          $(document).on('click', '#tombol-dataAwalJF', function(){
+            $('#loader-dataAwalJF').show();
+          });
+
+          $(document).on('click', '#tombol-dataAwalAccrue', function(){
+            $('#loader-dataAwalAccrue').show();
+          });
+
+          $(document).on('click', '#tombol-tarik-dleas, #tombol-upload-status', function(){
+            $('#loader').show();
+          });
+
+          $(document).on('click', '#tombol-tarik-dleas-jf, #tombol-upload-statusJF', function(){
+            $('#loader_statusJF').show();
+          });
+
+          $(document).on('click', '#tombol-tarik-dleas-accrue, #tombol-upload-statusAccrue', function(){
             $('#loader_statusAccrue').show();
+          });
+
+          $(document).on('click', '#tombol-payment-accrue', function(){
+            $('#loader_paymentAccrue').show();
           });
 
 
